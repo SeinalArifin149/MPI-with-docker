@@ -1,0 +1,26 @@
+version: '3'
+services:
+  master:
+    build: .
+    hostname: master
+    dns:
+      - 8.8.8.8        # Paksa DNS Google
+      - 8.8.4.4
+    volumes:
+      - ./codingan:/app
+    networks:
+      - mpi-net
+
+  worker:
+    build: .
+    hostname: worker
+    dns:
+      - 8.8.8.8        # Paksa DNS Google
+      - 8.8.4.4
+    volumes:
+      - ./src:/app
+    networks:
+      - mpi-net
+
+networks:
+  mpi-net:
